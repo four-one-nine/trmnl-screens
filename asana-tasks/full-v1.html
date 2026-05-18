@@ -1,0 +1,76 @@
+{% assign yesterdayTasks = data | where: "section", "overdue" | sort: "due_on" %}
+{% assign todayTasks = data | where: "section", "today" | sort: "due_on"%}
+{% assign laterTasks = data | where: "section", "later" | sort: "due_on" %}
+<div class="view view--{{size}}">
+  <div class="layout layout--col gap--medium"
+    <!-- Columns -->
+    <div class="columns p--4 outline">
+      <!-- First Column - Today and Overdue Tasks (double width) -->
+      <div class="column">
+        <div class="outline">
+          <!-- Today Section -->
+          <item
+            ><span
+              class="label label--medium group-header"
+              data-group-header="true"
+              >Today</span
+            ></item
+          >
+          {% for task in todayTasks limit:6 %}
+          <div class="item item--emphasis-2">
+            <div class="meta"></div>
+            <div class="flex flex--col flex--left">
+              <span class="title title--small">{{task.name}}</span>
+            </div>
+          </div>
+          {%endfor%}
+          <div class="divider"></div>
+        </div>
+        {% if size == "full" %}
+      </div>
+          
+        <!-- Second Column - Later Tasks -->
+        <div class="column outline" >
+          <item
+            ><span
+              class="label label--medium group-header"
+              data-group-header="true"
+              >Later</span
+            ></item
+          >
+          {% for task in laterTasks limit:6 %}
+          <div class="item item--emphasis-2">
+            <div class="meta"></div>
+            <div class="flex flex--col flex--left">
+              <span class="label label--gray">{{task.name}}</span>
+              <span class="description"
+                >{{task.due_on | date: "%a, %b %d" }}</span
+              >
+            </div>
+          </div>
+          {%endfor%}
+        </div>
+        {%endif%}
+        <!-- Third Column-->
+        <!-- Overdue Section -->
+        <div class="column outline">
+          <item
+            ><span
+              class="label label--medium group-header"
+              data-group-header="true"
+              >Overdue</span
+            ></item
+          >
+          {% for task in yesterdayTasks limit:6 %}
+          <div class="item item--emphasis-2">
+            <div class="meta"></div>
+            <div class="flex flex--col flex--left">
+              <span class="title title--small">{{task.name}}</span>
+            </div>
+          </div>
+          {%endfor%}
+        </div>
+          
+    </div>
+  </div>
+</div>

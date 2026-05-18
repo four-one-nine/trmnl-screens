@@ -1,0 +1,66 @@
+{% assign yesterdayTasks = data | where: "section", "overdue" | sort: "due_on" %}
+{% assign todayTasks = data | where: "section", "today" | sort: "due_on"%}
+{% assign laterTasks = data | where: "section", "later" | sort: "due_on" %}
+<div class="view view--{{size}}">
+  <div class="layout layout--col gap--medium layout--top">
+    <div class="rows w--full">     
+      <!--Row-->
+      <div class="row w--full bg--gray-75 p--1 rounded mb--2">
+        <div class=" flex flex--col w--full">
+          <!--Header-->
+          <div class="p--2">
+            <span
+            class="title text-stroke text--center w--full"
+            data-group-header="true"
+            >Today</span>
+          </div>
+          <!--Content Body-->
+          <div class="stretch bg--white rounded--small p--2">
+            <div class="rows w--full">
+              {% for task in todayTasks limit:6 %}
+              <div class="row p--1">
+                <div class="item item--emphasis-1">
+                 <div class="meta"></div>
+                  <div class="flex flex--col flex--left">
+                    <span class="title title--small">{{task.name}}</span>
+                  </div>
+                </div>
+              </div>
+              {%endfor%}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!--Row-->
+      <div class="row w--full bg--gray-75 p--1 rounded">
+        <div class=" flex flex--col w--full">
+          <!--Header-->
+          <div class="p--2">
+            <span
+            class="title text-stroke text--center w--full"
+            data-group-header="true"
+            >Later</span>
+          </div>
+          <!--Content Body-->
+          <div class="stretch bg--white rounded--small p--2">
+            <div class="rows w--full">
+              {% for task in laterTasks limit:4 %}
+              <div class="row p--1">
+                <div class="item item--emphasis-1">
+                 <div class="meta"></div>
+                  <div class="flex flex--col flex--left">
+                    <span class="title title--small">{{task.name}}</span>
+                  </div>
+                </div>
+              </div>
+              {%endfor%}
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+  
