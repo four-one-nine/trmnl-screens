@@ -1,0 +1,24 @@
+{% assign categories = data %}
+<div class="layout layout--col gap--space-between">
+{% for category in categories limit:6 %}
+  <div class="grid grid--cols-1">
+    <div class="grid grid--cols-2">
+    </div>
+    <div class="item">
+      <div class="meta"></div>
+        <div class="content">
+          <span class="value value--xsmall lg:value--base" data-fit-value="true">{{category.name}}</span>
+          <span class="label">Budgeted: ${{category.budgeted}}</span>
+          <span class="label">Spent: ${{category.spent}}</span>
+        </div>
+      <div class="meta"></div>
+      <div class="content">
+        <span class="label">Current Balance</span>
+        <span class="value value--medium value--tnums" data-fit-value="true">{{category.balance}}</span>
+      </div>
+    </div>
+  </div>
+  <div class="divider"></div>
+  {%endfor%}
+
+</div>
