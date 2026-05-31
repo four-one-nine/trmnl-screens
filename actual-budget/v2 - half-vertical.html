@@ -1,7 +1,8 @@
+
 {% assign categories = data %}
-<div class="layout layout--col gap--2">
+<div class="layout layout--col gap--2 p--2">
   <div class=" bg--gray-75 p--1 rounded mb--2 w--full">
-      <div class=" flex flex--col w--full">
+      <div class=" flex flex--col w--full h--full">
           <!--Header-->
           <div class="p--2 w--full">
             <span
@@ -9,10 +10,10 @@
           </div>
       </div>
     </div>
-  <div class="grid grid--wrap grid--cols-2 grid--min-32">
+  <div class="grid grid--wrap grid--cols-2 grid--min-32 h--full">
     {% for category in categories limit:7 %}
-    <div class=" bg--gray-75 p--1 rounded mb--2">
-      <div class=" flex flex--col w--full">
+    <div class=" bg--gray-75 p--1 rounded mb--2 h--full">
+      <div class=" flex flex--col w--full h--full">
           <!--Header-->
           <div class="p--2">
             <span
@@ -20,9 +21,11 @@
             data-group-header="true"
             >{{category.name}}</span>
           </div>
-        <span class="title text-stroke text--center w--full">${{category.balance}}</span>
+        <span class="title--large text-stroke text--center w--full">${{category.balance}}</span>
       </div>
     </div>
   {%endfor%}
   </div>
 </div>
+
+
